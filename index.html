@@ -1,52 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pen</title>
-    <header><div><h1 class="name">
-      THE WILD FACTORY</h1></header></div>
-      </head>
-   <body>
-     <div class="gold-dots">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToyTown | Kids Toy Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Toy<span>Town</span></div>
+
+  <nav id="mainNav">
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Toys</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <div class="header-buttons">
+    <button onclick="openWishlist()">♡ Wishlist <b id="wishlistCount">0</b></button>
+    <button onclick="openOwnerLogin()">🔐 Owner</button>
+    <button id="menuBtn">☰</button>
+  </div>
+</header>
+
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p>PLAY • LEARN • IMAGINE</p>
+    <h1>Big Fun For <span>Little Minds</span></h1>
+    <p>Discover colourful toys, educational games and adorable friends.</p>
+
+    <div class="hero-buttons">
+      <button class="main-btn" onclick="goToProducts()">Explore Toys</button>
+      <button class="outline-btn" onclick="showSpecialOffer()">Special Offer</button>
+    </div>
+  </div>
+
+  <!-- Main toy store image -->
+  <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1000&q=80" alt="Colourful toys">
+</section>
+
+
+<section class="section" id="categories">
+  <div class="heading">
+    <p>EXPLORE</p>
+    <h2>Shop By Category</h2>
+  </div>
+
+  <div class="categories">
+
+    <!-- Soft toys category image -->
+    <button class="category-card" onclick="filterCategory('Soft Toys')">
+      <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=500&q=80">
+      <strong>Soft Toys</strong>
+    </button>
+
+    <!-- Cars category image -->
+    <button class="category-card" onclick="filterCategory('Cars')">
+      <img src="https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=500&q=80">
+      <strong>Cars & Vehicles</strong>
+    </button>
+
+    <!-- Educational toys category image -->
+    <button class="category-card" onclick="filterCategory('Educational')">
+      <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=500&q=80">
+      <strong>Educational</strong>
+    </button>
+
+    <!-- Games category image -->
+    <button class="category-card" onclick="filterCategory('Games')">
+      <img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=500&q=80">
+      <strong>Games</strong>
+    </button>
+
+  </div>
+</section>
+
+
+<section class="section products-section" id="products">
+
+  <div class="heading">
+    <p>TOYTOWN COLLECTION</p>
+    <h2>Popular Toys</h2>
+  </div>
+
+  <div class="controls">
+
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search toys...">
+      <button onclick="searchProducts()">🔍</button>
+    </div>
+
+    <select id="sortSelect" onchange="sortProducts()">
+      <option value="default">Sort Toys</option>
+      <option value="low">Price Low → High</option>
+      <option value="high">Price High → Low</option>
+      <option value="name">Name A → Z</option>
+    </select>
+
+    <button class="clear-btn" onclick="clearFilters()">Clear</button>
+  </div>
+
+  <div class="products" id="productContainer"></div>
+  <p class="no-products" id="noProducts">No toys found.</p>
+
+</section>
+
+
+<section class="about section" id="about">
+
+  <div>
+    <!-- Kids playing toys image -->
+    <img src="https://images.unsplash.com/photo-1599623560574-39d485900c95?auto=format&fit=crop&w=900&q=80" alt="Kids toys">
+  </div>
+
+  <div>
+    <p class="gold">WHY TOYTOWN?</p>
+    <h2>Where Every Toy Starts An Adventure</h2>
+    <p>ToyTown brings fun, creativity and learning together through exciting toys.</p>
+
+    <div class="stats">
+      <div><strong>50+</strong><span>Toys</span></div>
+      <div><strong>4</strong><span>Categories</span></div>
+      <div><strong>100%</strong><span>Fun</span></div>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="offer">
+  <div>
+    <p>TOYTOWN SPECIAL</p>
+    <h2>More Toys. More Smiles. 🎈</h2>
+    <button class="main-btn" onclick="showSpecialOffer()">Check Offer</button>
+  </div>
+
+  <!-- Toy offer image -->
+  <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?auto=format&fit=crop&w=800&q=80" alt="Toy offer">
+</section>
+
+
+<section class="section faq-section">
+  <div class="heading">
+    <p>HELP</p>
+    <h2>Frequently Asked Questions</h2>
+  </div>
+
+  <div class="faq">
+
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">
+        What type of toys are available?
+        <span>+</span>
+      </button>
+      <p>Soft toys, cars, educational toys and games are available.</p>
+    </div>
+
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">
+        Can I save toys?
+        <span>+</span>
+      </button>
+      <p>Yes, use the heart button to add toys to your wishlist.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <h2>Toy<span>Town</span></h2>
+  <p>Where Every Toy Tells A Story 🎈</p>
+  <p>© 2026 ToyTown</p>
+</footer>
+
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+  <div class="product-modal">
+    <button class="close-btn" onclick="closeProductModal()">×</button>
+
+    <img id="modalImage" src="" alt="Toy">
+
+    <div class="modal-info">
+      <small id="modalCategory"></small>
+      <h2 id="modalName"></h2>
+      <h3 id="modalPrice"></h3>
+      <p id="modalDescription"></p>
+
+      <button class="main-btn" id="modalWishlistBtn">
+        ♡ Add to Wishlist
+      </button>
+    </div>
+  </div>
 </div>
 
 
-      <div class="top-bar"><input class="bar" type="text"placeholder="
-Search Items"</div>
-    <button class="cart" onclick="addToCart()"> Add to Cart</button>
+<!-- WISHLIST MODAL -->
+<div class="modal" id="wishlistModal">
+  <div class="wishlist-box">
+    <button class="close-btn" onclick="closeWishlist()">×</button>
+    <h2>♡ My Wishlist</h2>
+    <div id="wishlistItems"></div>
+  </div>
+</div>
 
-     
-    <button class="wish">&#9829;Add to Wish</button>
-    
-     
-   
-     <div class="box"></div>
-     
-      <div class="box-0"> </div>
-  
 
-      <div class="box-2"> </div>
-    
+<!-- OWNER LOGIN -->
+<div class="modal" id="ownerLoginModal">
+  <div class="login-box">
 
-  
+    <button class="close-btn" onclick="closeOwnerLogin()">×</button>
 
-    <script src="script.js"></script> 
-  </body>
+    <h2>🔐 Owner Access</h2>
+    <p>Enter owner password</p>
+
+    <input
+      type="password"
+      id="ownerPassword"
+      placeholder="Enter password"
+    >
+
+    <button class="main-btn" onclick="ownerLogin()">
+      Login
+    </button>
+
+    <p id="loginError"></p>
+
+  </div>
+</div>
+
+
+<!-- OWNER DASHBOARD -->
+<div class="modal" id="ownerDashboardModal">
+
+  <div class="dashboard">
+
+    <button class="close-btn" onclick="closeDashboard()">×</button>
+
+    <h1>👑 Owner Dashboard</h1>
+
+    <div class="dashboard-stats">
+
+      <div>
+        <strong id="totalProducts">0</strong>
+        <span>Products</span>
+      </div>
+
+      <div>
+        <strong id="totalWishlist">0</strong>
+        <span>Wishlist</span>
+      </div>
+
+      <div>
+        <strong id="totalCategories">0</strong>
+        <span>Categories</span>
+      </div>
+
+    </div>
+
+
+    <div class="admin-add">
+
+      <h2>➕ Add Product</h2>
+
+      <input id="productName" placeholder="Product Name">
+
+      <input id="productPrice" type="number" placeholder="Price">
+
+      <select id="productCategory">
+        <option>Soft Toys</option>
+        <option>Cars</option>
+        <option>Educational</option>
+        <option>Games</option>
+      </select>
+
+      <input id="productImage" placeholder="Image URL">
+
+      <textarea id="productDescription" placeholder="Product Description"></textarea>
+
+      <button class="main-btn" onclick="addProduct()">
+        Add Product
+      </button>
+
+    </div>
+
+
+    <div class="admin-offer">
+
+      <h2>🏷️ Manage Offer</h2>
+
+      <input id="offerText" placeholder="Enter offer text">
+
+      <button class="main-btn" onclick="saveOffer()">
+        Save Offer
+      </button>
+
+      <button class="outline-btn" onclick="viewOffer()">
+        View Offer
+      </button>
+
+    </div>
+
+
+    <h2 class="manage-title">📦 Manage Products</h2>
+
+    <div id="adminProductList"></div>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
 </html>
